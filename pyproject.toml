@@ -1,0 +1,36 @@
+[project]
+name = "sovlm"
+version = "0.1.0"
+description = "Sovereign Statistical LM — N-grams + Kneser-Ney + BM25 Retrieval, zero training, zero GPU"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click",
+    "rich",
+    "pydantic",
+    "pyyaml",
+    "numpy",
+    "scipy",
+    "xxhash",
+    "orjson",
+    "gitpython",
+    "httpx",
+]
+
+[project.optional-dependencies]
+qrng = ["qiskit-ibm-runtime"]
+dev = ["pytest", "pytest-cov", "ruff", "mypy"]
+
+[project.scripts]
+sovlm = "sovlm.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sovlm"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
